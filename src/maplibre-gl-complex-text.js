@@ -172,7 +172,7 @@ function breakStringByScript(input) {
         'Telugu',
         'Malayalam'
     ];
-    const scriptPatterns = scripts.map(script => `\\p{Script=${script}}+`);
+    const scriptPatterns = scripts.map(script => `\\p{Script=${script}}+(?:[\u200C\u200D]\\p{Script=${script}}+)*`);
     const negatedScripts = scripts.map(script => `\\p{Script=${script}}`).join('');
     const otherPattern = `[^${negatedScripts}]+`;
     const pattern = `(${[...scriptPatterns, otherPattern].join('|')})`;
@@ -181,57 +181,57 @@ function breakStringByScript(input) {
 }
 
 function isDevanagari(str) {
-    const r = /^[\p{Script=Devanagari}]+$/u;
+    const r = /^[\p{Script=Devanagari}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isKhmer(str) {
-    const r = /^[\p{Script=Khmer}]+$/u;
+    const r = /^[\p{Script=Khmer}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isMyanmar(str) {
-    const r = /^[\p{Script=Myanmar}]+$/u;
+    const r = /^[\p{Script=Myanmar}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isKannada(str) {
-    const r = /^[\p{Script=Kannada}]+$/u;
+    const r = /^[\p{Script=Kannada}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isOriya(str) {
-    const r = /^[\p{Script=Oriya}]+$/u;
+    const r = /^[\p{Script=Oriya}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isGujarati(str) {
-    const r = /^[\p{Script=Gujarati}]+$/u;
+    const r = /^[\p{Script=Gujarati}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isGurmukhi(str) {
-    const r = /^[\p{Script=Gurmukhi}]+$/u;
+    const r = /^[\p{Script=Gurmukhi}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isBengali(str) {
-    const r = /^[\p{Script=Bengali}]+$/u;
+    const r = /^[\p{Script=Bengali}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isTelugu(str) {
-    const r = /^[\p{Script=Telugu}]+$/u;
+    const r = /^[\p{Script=Telugu}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isTamil(str) {
-    const r = /^[\p{Script=Tamil}]+$/u;
+    const r = /^[\p{Script=Tamil}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
 function isMalayalam(str) {
-    const r = /^[\p{Script=Malayalam}]+$/u;
+    const r = /^[\p{Script=Malayalam}\u200C\u200D]+$/u;
     return r.test(str);
 }
 
