@@ -134,7 +134,7 @@ function getCodepoint(positionedGlyph, script) {
     key = `${index}/${x_offset}/${y_offset}/${x_advance}/${y_advance}`;
     console.log(key, 'not found');
 
-    return 65; // Capital A - means no codepoint found
+    return -1; // means no codepoint found
 }
 
 function shape(text, script) {
@@ -152,7 +152,10 @@ function encode(text, script) {
 
     var glyphVector = shape(text, script);
     for (var positionedGlyph of glyphVector) {
-        result += String.fromCharCode(getCodepoint(positionedGlyph, script));
+        var codepoint = getCodepoint(positionedGlyph, script);
+        if (codepoint != -1) {
+            result += String.fromCharCode(codepoint);
+        }
     }
 
     return result;
