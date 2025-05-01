@@ -53,6 +53,10 @@
         });
 
         map.on("load", function () {
+
+            // Mute boundary lines to avoid distractions over disputed areas
+            map.setPaintProperty('boundary','line-opacity',0.1)
+            
             map.addSource("labels", {
                 type: "geojson",
                 data: {
