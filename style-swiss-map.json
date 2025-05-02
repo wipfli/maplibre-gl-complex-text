@@ -17,30 +17,6 @@
       "global-forest-polygons": {
         "type": "vector",
         "url": "https://tiles.swiss-map.cc/global-forest-polygons.json"
-      },
-      "swisstopo-vector-hillshade": {
-        "type": "vector",
-        "url": "https://wipfli.github.io/swiss-map/tilejson-swisstopo-vector-hillshade.json",
-        "attribution": "<a href=\"https://geo.admin.ch\">© swisstopo</a>"
-      },
-      "bikeroutes": {
-        "type": "vector",
-        "tiles": [
-          "https://tiles.swiss-map.cc/bikeroutes/{z}/{x}/{y}.pbf"
-        ],
-        "maxzoom": 14
-      },
-      "protomaps": {
-        "type": "vector",
-        "tiles": [
-          "https://tiles.swiss-map.cc/protomaps/{z}/{x}/{y}.pbf"
-        ],
-        "minzoom": 12,
-        "maxzoom": 15
-      },
-      "overture-buildings": {
-        "type": "vector",
-        "url": "https://tiles.swiss-map.cc/overture-buildings.json"
       }
     },
     "light": {
@@ -190,30 +166,6 @@
         }
       },
       {
-        "id": "GTON",
-        "type": "fill",
-        "source": "swisstopo-vector-hillshade",
-        "source-layer": "GTON",
-        "layout": {
-          "visibility": "none"
-        },
-        "paint": {
-          "fill-color": "rgba(255, 255, 228, 0.125)"
-        }
-      },
-      {
-          "id": "RELI",
-          "type": "fill",
-          "source": "swisstopo-vector-hillshade",
-          "source-layer": "RELI",
-          "layout": {
-            "visibility": "none"
-          },
-          "paint": {
-            "fill-color": "rgba(173, 188, 199, 0.125)"
-          }
-      },
-      {
         "id": "waterway",
         "type": "line",
         "source": "swissmap",
@@ -247,30 +199,6 @@
         },
         "paint": {
           "fill-color": "#abcdfb"
-        }
-      },
-      {
-        "id": "bikeroutes",
-        "type": "line",
-        "source": "bikeroutes",
-        "source-layer": "bikeroutes",
-        "minzoom": 10,
-        "layout": {
-          "visibility": "none",
-          "line-cap": "round",
-          "line-join": "round"
-        },
-        "paint": {
-          "line-color": "#61c455",
-          "line-opacity": 1.0,
-          "line-width": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            10, 4,
-            14, 12,
-            20, 30
-          ]
         }
       },
       {
@@ -535,32 +463,8 @@
         },
         "paint": {
           "line-width": 2,
-          "line-color": "#7f8c8d"
-        }
-      },
-      {
-        "id": "overture_buildings",
-        "type": "fill",
-        "source": "overture-buildings",
-        "source-layer": "buildings/building",
-        "layout": {
-          "visibility": "visible"
-        },
-        "paint": {
-          "fill-color": "#000"
-        }
-      },
-      {
-        "id": "overture_buildings_outline",
-        "type": "line",
-        "source": "overture-buildings",
-        "source-layer": "buildings/building",
-        "layout": {
-          "visibility": "visible"
-        },
-        "paint": {
-          "line-color": "#444",
-          "line-width": 1
+          "line-color": "#7f8c8d",
+          "line-opacity": 0.1
         }
       },
       {
@@ -602,66 +506,6 @@
           "fill-extrusion-color": "#e6e7e9",
           "fill-extrusion-height": ["to-number", ["get", "est_height"]],
           "fill-extrusion-opacity": 1.0
-        }
-      },
-      {
-        "id": "pois-circle",
-        "type": "circle",
-        "source": "protomaps",
-        "source-layer": "pois",
-        "filter": [
-          "any",
-          ["in", ["get", "shop"], ["literal", ["convenience", "supermarket", "grocery"]]],
-          ["in", ["get", "tourism"], ["literal", ["camp_site"]]]
-        ],
-        "layout": {
-          "visibility": "visible"
-        },
-        "paint": {
-          "circle-color": [
-            "case",
-            ["in", ["get", "shop"], ["literal", ["convenience", "supermarket", "grocery"]]],
-            "#5d60be",
-            "#7d675e"
-          ], 
-          "circle-radius": 5
-        }
-      },
-      {
-        "id": "pois",
-        "type": "symbol",
-        "source": "protomaps",
-        "source-layer": "pois",
-        "filter": [
-          "any",
-          ["in", ["get", "shop"], ["literal", ["convenience", "supermarket", "grocery"]]],
-          ["in", ["get", "tourism"], ["literal", ["camp_site"]]]
-        ],
-        "layout": {
-          "text-field": ["get", "name"],
-          "text-font": ["Fira Sans Regular"],
-          "text-anchor": "top",
-          "text-offset": [0, 0.6],
-          "icon-image": [
-            "case",
-            ["in", ["get", "shop"], ["literal", ["convenience", "supermarket", "grocery"]]],
-            "grocery_11",
-            "campsite_11"
-          ],
-          "icon-size": 1.0,
-          "text-optional": true
-        },
-        "paint":{
-          "text-halo-width": 1.5,
-          "text-halo-color": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            13,
-            "rgba(255, 255, 255, 0.7)",
-            14,
-            "rgba(255, 255, 255, 1.0)"
-          ]
         }
       },
       {

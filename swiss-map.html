@@ -55,7 +55,7 @@
 
     <script>
         maplibregl.setRTLTextPlugin(
-            "https://wipfli.github.io/maplibre-gl-complex-text/dist/maplibre-gl-complex-text.js",
+            "http://localhost:3000/dist/maplibre-gl-complex-text.js",
             false
         );
 
@@ -99,7 +99,7 @@
             if (!map.getLayer(layerId)) return;
             map.setLayoutProperty(layerId, 'text-field', [
                 "format",
-                ["get", "name:en"], {},
+                ["coalesce", ["get", "name:en"], ["get", "name"]], {},
                 "\n", {},
                 ['get', langField], {}
             ]);
